@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { ProductoService } from '../services/producto.service';
+import { Producto } from '../producto/producto';
+import { GLOBAL } from '../services/global';
 
 @Component({
   selector: 'productos-list',
@@ -10,7 +12,8 @@ import { ProductoService } from '../services/producto.service';
 })
 export class ProductosListComponent implements OnInit {
   public titulo: string;
-  public productos:any;
+  public productos: Producto[];
+  public url_uploads = GLOBAL.url_uploads;
   constructor(
     private _route : ActivatedRoute,
     private _router: Router,
@@ -22,7 +25,7 @@ export class ProductosListComponent implements OnInit {
   
   ngOnInit() {
     
-    alert(this._productoService.getPrueba());
+    console.log("llamado a metodo getPrueba en el servicio",this._productoService.getPrueba());
 
     this._productoService.getProductos().subscribe(
       result => {
@@ -31,7 +34,8 @@ export class ProductosListComponent implements OnInit {
               console.warn(result);
               this.productos = result;
           }else{
-              //this.productos = result.data;
+              this.productos = result.data;
+              console.log("resultado",result);
           }
 
       },

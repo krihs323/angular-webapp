@@ -14,13 +14,13 @@
                 <a [routerLink]="['/productos']" [routerLinkActive]="['activado']">Listado de Prductos</a>
             </li>
             <li>
-                <a href="#">Crear Producto</a>
+                <a [routerLink]="['/crear-producto']" [routerLinkActive]="['activado']">Crear Producto</a>
             </li>
         </ul>
     </nav>
 
     <section id="main" class="col-lg-12">
-        <productos-list></productos-list>
+        <router-outlet></router-outlet>
     </section>
 
     <footer id="footer" class="col-lg-12">

@@ -1,2 +1,26 @@
 <h3>{{titulo}}</h3>
 <hr>
+
+<div *ngIf="!productos"> Cargando Productos...</div>
+
+<div *ngIf="productos">
+    <div class="row">
+        <div class="col-lg-3" *ngFor="let producto of productos">
+            <div class="img-thumbnail">
+                <div *ngIf="producto.imagen" class="imagen-container">
+                    <img src="{{url_uploads}}{{producto.imagen}}" class="producto-imagen">
+                </div>
+                <div *ngIf="!producto.imagen" class="imagen-relleno"></div>
+                <div class="figure-caption">
+                    <h3>{{producto.nombre}} - {{producto.descripcion}}</h3>
+                    <br>${{producto.precio}}
+                    <p>
+                        <a [routerLink]="['/producto',producto.id]" class="btn btn-sm btn-info">Ver</a>
+                        <a href="#" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="#" class="btn btn-sm btn-danger">Eliminar</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

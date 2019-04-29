@@ -1,0 +1,31 @@
+<form #formProducto="ngForm" (ngSubmit)="onSubmit()" class="col-lg-6" id="form-producto">
+
+    <label>
+        Nombre
+        <span *ngIf="nombre.touched && !nombre.valid" class="badge badge-danger">
+            El nombre es requerido
+        </span>
+    </label>
+    <input type="text" class="form-control" #nombre="ngModel" name="nombre" [(ngModel)]="producto.nombre" required />
+
+    <label>Descripción
+        <span *ngIf="descripcion.touched && !descripcion.valid" class="badge badge-danger">
+            La descripción es requerida
+        </span>
+    </label>
+    <input type="text" class="form-control" #descripcion="ngModel" name="descripcion" [(ngModel)]="producto.descripcion" required/>
+
+    <label>Precio
+        <span *ngIf="precio.touched && !precio.valid" class="badge badge-danger">
+            El precio es invalido, solo permite números del 1 al 9
+        </span>
+    </label>
+    <input type="number" class="form-control" #precio="ngModel" name="precio" [(ngModel)]="producto.precio" required pattern="[0-9]+" />
+
+    <label>Imagen</label>
+    <input type="file" class="form-control" (change)="fileChangeEvent($event)" />
+
+    <br>
+    <button type="submit" [disabled]="!formProducto.form.valid" class="btn btn-success">{{titulo}}</button>
+
+</form>
