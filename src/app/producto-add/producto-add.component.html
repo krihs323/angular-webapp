@@ -22,9 +22,17 @@
     </label>
     <input type="number" class="form-control" #precio="ngModel" name="precio" [(ngModel)]="producto.precio" required pattern="[0-9]+" />
 
-    <label>Imagen</label>
-    <input type="file" class="form-control" (change)="fileChangeEvent($event)" />
+    <div class="row">
+        <div class="col-lg-8">
+            <label>Imagen</label>
+            <input type="file" class="form-control" (change)="fileChangeEvent($event)" />
+        </div>
 
+        <div *ngIf="is_edit" class="col-lg-4">
+            <br>
+            <img src="{{url_uploads}}{{producto.imagen}}" height="60px;">
+        </div>
+    </div>
     <br>
     <button type="submit" [disabled]="!formProducto.form.valid" class="btn btn-success">{{titulo}}</button>
 

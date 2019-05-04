@@ -31,7 +31,7 @@ export class ProductoAddComponent implements OnInit {
   onSubmit(){
 	console.log("producto creado",this.producto);
 	
-	if (this.filesToUpload.length>=1) {
+	if (this.filesToUpload && this.filesToUpload.length>=1) {
 		this._productoService.makeFileRequest(GLOBAL.url+'upload-file',[],this.filesToUpload ).then((result)=>{
 			this.resultUpload = result;
 			this.producto.imagen = this.resultUpload.file_name;
@@ -41,9 +41,6 @@ export class ProductoAddComponent implements OnInit {
 	}else{
 		this.saveProducto();
 	}
-
-	
-
     
   }
 

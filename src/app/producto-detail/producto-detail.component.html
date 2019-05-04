@@ -1,2 +1,17 @@
-<h3>{{titulo}}</h3>
-<hr>
+<div *ngIf="!producto">
+    Cargaando Producto...
+</div>
+
+
+<div class="row" *ngIf="producto">
+    <div class="col-lg-4" *ngIf="producto.imagen">
+        <br>
+        <img src="{{url_uploads}}{{producto.imagen}}" class="producto-imagen">
+    </div>
+    <div class="col-lg-8">
+        <br>
+        <h3>{{producto.nombre}}</h3>
+        <p><strong>{{producto.precio}}</strong></p>
+        <p>{{producto.descripcion}}</p>
+    </div>
+</div>

@@ -14,11 +14,17 @@
                 <div class="figure-caption">
                     <h3>{{producto.nombre}} - {{producto.descripcion}}</h3>
                     <br>${{producto.precio}}
-                    <p>
+                    <div *ngIf="confirmado != producto.id">
                         <a [routerLink]="['/producto',producto.id]" class="btn btn-sm btn-info">Ver</a>
-                        <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                        <a href="#" class="btn btn-sm btn-danger">Eliminar</a>
-                    </p>
+                        <a [routerLink]="['/editar-producto',producto.id]" class="btn btn-sm btn-warning">Editar</a>
+                        <a (click)="borrarConfirm(producto.id)" class="btn btn-sm btn-danger">Eliminar</a>
+                    </div>
+
+                    <div *ngIf="confirmado == producto.id">
+                        <p>Está seguro de querer borrar este producto?</p>
+                        <a (click)="onDeleteProducto(producto.id)" class="btn btn-sm btn-danger">Confirmar Eliminación</a>
+                        <a (click)="cancelarConfirm()" class="btn btn-sm btn-primary">Cancelar</a>
+                    </div>
                 </div>
             </div>
         </div>

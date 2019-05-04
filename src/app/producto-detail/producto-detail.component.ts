@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { Producto } from '../producto/producto';
 import { ProductoService } from '../services/producto.service';
-import { TrustedString } from '@angular/core/src/sanitization/bypass';
+import { GLOBAL } from '../services/global';
 
 @Component({
   selector: 'producto-detail',
@@ -12,6 +12,8 @@ import { TrustedString } from '@angular/core/src/sanitization/bypass';
 })
 export class ProductoDetailComponent implements OnInit {
   public titulo: string;
+  public producto: Producto;
+  public url_uploads = GLOBAL.url_uploads;
   constructor(
     private _productoService: ProductoService,
     private _route: ActivatedRoute,
@@ -22,6 +24,30 @@ export class ProductoDetailComponent implements OnInit {
 
   ngOnInit() {
     console.log('Componente producto detail cargado');
+
+    this.getProducto();
   }
+
+	getProducto(){
+		this._route.params.forEach((params: Params) => {
+			let id = params['id'];
+
+			this._productoService.getProducto(id).subscribe(
+				result => {
+					
+					if(result.code == 200){
+						this.producto = result.data;
+						console.log("el producto",this.producto)
+					}else{
+						this._router.navigate(['/productos']);
+					}
+		
+				},
+				error => {
+					console.log(<any>error);
+				}
+			);
+		});
+	}
 
 }

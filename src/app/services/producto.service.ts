@@ -28,12 +28,24 @@ export class ProductoService{
         //return this._http.get(this.url).map(response => response);
     }
 
+    getProducto(id): Observable<any>{
+        return this._http.get(this.url+'producto/'+id);
+    }
+
     addProducto(producto: Producto): Observable<any>{
         let json = JSON.stringify(producto);
         let params = 'json='+json;
         let headers = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'});
 
         return this._http.post(this.url+'productos',params,{headers: headers});
+    }
+
+    editProducto(id: number, producto: Producto): Observable<any>{
+        let json = JSON.stringify(producto);
+        let params = 'json='+json;
+        let headers = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'});
+
+        return this._http.post(this.url+'actualizar-producto/'+id, params, {headers: headers});
     }
 
     makeFileRequest(url: string, params: Array<string>,files: Array<File>){
@@ -60,10 +72,14 @@ export class ProductoService{
 
         });
     }
+ 
+
+    deleteProducto(id): Observable<any>{
+        return this._http.get(this.url+'borrar-producto/'+id);
+    }
 
     getPrueba(){
         return "Hola Mundo desde el servicio peticiones!!";
     }
-
   
 }

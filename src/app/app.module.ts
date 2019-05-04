@@ -16,6 +16,7 @@ import { ProductoAddComponent } from './producto-add/producto-add.component';
 //Peticiones ajax
 import {HttpClientModule} from '@angular/common/http';
 import { ProductoDetailComponent } from './producto-detail/producto-detail.component';
+import { ProductoEditComponent } from './producto-edit/producto-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProductoDetailComponent } from './producto-detail/producto-detail.compo
     ErrorComponent,
     ProductosListComponent,
     ProductoAddComponent,
-    ProductoDetailComponent
+    ProductoDetailComponent,
+    ProductoEditComponent
   ],
   imports: [
     BrowserModule,
